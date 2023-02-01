@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -24,6 +25,13 @@ return new class extends Migration
             $table->integer('pay_total');
             $table->timestamps();
         });
+
+        
+        DB::unprepared('CREATE TRIGGER `get_cupon` AFTER INSERT ON `transactions`
+        FOR EACH ROW UPDATE user_kupons 
+        SET user_kupons.quantity_kupon = user_kupons.quantity_kupon +1
+        
+        ');
     }
 
     /**
