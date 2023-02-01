@@ -14,8 +14,9 @@ class KuponController extends Controller
      */
     public function index()
     {
-        $k = kupon::all();
-        return $k;
+        $kupon = kupon::all();
+        // return $kupon;
+        return view('kupon.index',compact('kupon'));
     }
 
     /**
@@ -36,7 +37,19 @@ class KuponController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'stok' => 'required|numeric', 
+           'harga_ketentuan' => 'required|numeric', 
+           'diskon' => 'required|numeric',
+         ]);
+
+         kupon::create([
+            'stok' => $request-> stok, 
+           'harga_ketentuan' => $request-> harga_ketentuan, 
+           'diskon' => $request-> diskon,
+         ]);
+
+        return redirect()->back()->with('status', 'Kupon berhasil disimpan');
     }
 
     /**
@@ -56,9 +69,10 @@ class KuponController extends Controller
      * @param  \App\Models\kupon  $kupon
      * @return \Illuminate\Http\Response
      */
-    public function edit(kupon $kupon)
+    public function edit($id)
     {
-        //
+        $kupon = kupon::find($id);
+        return view('kupon.edit',compact('kupon'));
     }
 
     /**
@@ -68,9 +82,17 @@ class KuponController extends Controller
      * @param  \App\Models\kupon  $kupon
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, kupon $kupon)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+           'stok' => 'required|numeric', 
+           'harga_ketentuan' => 'required|numeric', 
+           'diskon' => 'required|numeric', 
+        ]);
+
+        $i = kupon::findorfail($id);
+        $i->update($request->all());
+        return redirect('kupon.index')->with('status', 'Kupon berhasil diupdate');
     }
 
     /**
@@ -79,8 +101,17 @@ class KuponController extends Controller
      * @param  \App\Models\kupon  $kupon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(kupon $kupon)
+
+    public function userkupon()
     {
-        //
+        
+    }
+
+    public function destroy($id)
+    {
+        kupon::destroy($id);
+        // return $id;
+        return redirect()->back()->with('status', 'Kupon berhasil dihapus');
+        // good luck bozo
     }
 }
