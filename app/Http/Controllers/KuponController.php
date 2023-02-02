@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\kupon;
+use App\Models\user_kupon;
 use Illuminate\Http\Request;
 
 class KuponController extends Controller
@@ -104,7 +105,9 @@ class KuponController extends Controller
 
     public function userkupon()
     {
-        
+        $userK = user_kupon::all();
+        // return $userK;
+        return view ('user.index', compact('userK'));
     }
 
     public function destroy($id)

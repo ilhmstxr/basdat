@@ -4,7 +4,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\KuponController;
-// use App\Http\Controllers\UserKuponController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,8 +29,7 @@ route::resource('category', CategoryController::class);
 route::resource('items', ItemsController::class);
 route::resource('transaction', TransactionController::class);
 Route::resource('kupon', kuponController::class);
-// Route::get('userkupon', [KuponController::class, 'userkupon'])->name('userkupon');
-// Route::resource('userkupon', UserKuponController::class);
+Route::get('userkupon', [KuponController::class, 'userkupon'])->name('userkupon');
 route::get('history', [TransactionController::class,'history']);
 route::post('transaction/checkout', [TransactionController::class, 'checkout'])->name('transaction.checkout');
 // route::get('detail', [TransactionController::class,'detail']);
