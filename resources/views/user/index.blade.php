@@ -40,13 +40,8 @@
                                 <td>{{ $k->diskon}}</td>
                                 {{-- <td>Makanan</td> --}}  
                                 <td>
-                                    <form action="{{ route('kupon.destroy', $k->id) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <a href="{{ route('kupon.edit', $k->id) }}"
-                                            class="btn btn-sm btn-warning">Edit</a>
-                                        <button type="submit" class="btn btn-sm btn-danger">delete</button>
-                                    </form>
+                                <a href="{{ route('kupon.edit' , $k -> id ) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{ route('kupon.destroy' , $k -> id ) }}" class="btn btn-sm btn-danger">Delete</a>
                                 </td>
                             </tr>
                             @endforeach                            
