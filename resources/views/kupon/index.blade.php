@@ -37,7 +37,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $k->stok }}</td>
                                 <td>{{ $k->harga_ketentuan }}</td>
-                                <td>{{ $k->diskon}}</td>
+                                <td>{{ number_format($k->diskon)}}</td>
                                 {{-- <td>Makanan</td> --}}  
                                 <td>
                                     <form action="{{ route('kupon.destroy', $k->id) }}" method="POST">
