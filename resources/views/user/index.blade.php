@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard User') }}</div>
+                    <div class="card-header">{{ __('Dashboard') }}</div>
 
                     <div class="card-body">
                         @if (count ($errors) > 0)
@@ -46,6 +46,48 @@
                             </tr>
                             @endforeach                            
                         </table>                        
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4 ">
+                <div class="card">
+                    <div class="card-header">{{ __('Add Kupon') }}</div>
+
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+
+
+                        <form action="{{ route('kupon.store') }}" method="post">
+                            @csrf
+
+                            <div class="form-group">
+                                <label for="">Stok Kupon</label>
+                                <input type="number" class="form-control" placeholder="Masukkan stok" name="stok">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="">Harga ketentuan</label>
+                                <input type="number" class="form-control" placeholder="Masukkan Harga ketentuan" name="harga_ketentuan">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="">Diskon</label>
+                                <input type="number" class="form-control" placeholder="Masukkan diskon" name="diskon">
+                            </div>
+                            
+
+                            <div class="form-group mt-2">
+                                
+                                <button type="submit" class="btn btn-sm btn-success">Simpan</button>
+                                <input type="reset" value="Batal" class="btn btn-sm btn-danger">                                
+                            </div>
+                        </form>                        
                     </div>
                 </div>
             </div>
