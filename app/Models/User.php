@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Psy\CodeCleaner\AssignThisVariablePass;
 
 class User extends Authenticatable
 {
@@ -46,5 +47,10 @@ class User extends Authenticatable
     public function transaction()
     {
         return $this->hasMany(transaction::class);
+    }
+
+    public function userkupon()
+    {
+        return $this->hasMany(user_kupon::class);
     }
 }

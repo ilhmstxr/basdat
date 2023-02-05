@@ -13,6 +13,11 @@ class user_kupon extends Model
 
     public function kupon()
     {
-        return $this->belongsToMany(kupon::class);
+        return $this->belongsTo(kupon::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(user::class);
     }
 }
