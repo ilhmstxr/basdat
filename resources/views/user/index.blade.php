@@ -35,8 +35,8 @@
                             @foreach ($userK as $uk)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $uk->user_id }}</td>
-                                <td>{{ $uk->kupon_id = 0 }}</td>
+                                <td>{{ $uk->user->name }}</td>
+                                <td>{{ $uk->kupon->diskon}}</td>
                                 <td>{{ $uk->quantity_kupon}}</td>
                                 {{-- <td>Makanan</td> --}}  
                                 <td>
