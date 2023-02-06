@@ -69,9 +69,9 @@
                                         </a>
                                         <hr class="sidebar-divider my-2">
 
-                                        <a class="dropdown-item" href="{{ route('kupon.user') }}">
-                                            {{ __('kupon') }}
-                                        </a>
+                                        {{-- @foreach ($user as $u) --}}
+                                        <a href="{{ route('profile.index') }}" class="dropdown-item">kupon</a>
+                                        {{-- @endforeach --}}
 
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"

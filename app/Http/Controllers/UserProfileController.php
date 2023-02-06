@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\kupon;
 use Illuminate\Http\Request;
+use App\Models\kupon;
+use App\Models\User;
+use App\Models\user_kupon;
 
-class UserController extends Controller
+class UserProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +18,12 @@ class UserController extends Controller
     {
         $u = user::all();
         $k = kupon::all();
-        return redirect('layouts.topbar', compact('u'));
+        $t = auth()->user()->id;
+        $user = user_kupon::where('user_id',$t)->get();
+        return view('profile',compact('user'));
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -49,7 +53,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return true;
     }
 
     /**

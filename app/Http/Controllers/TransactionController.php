@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\item;
 use App\Models\Cart;
 use App\Models\Transaction;
+use App\Models\kupon;
 use App\Models\TransactionDetail;
 
 class TransactionController extends Controller
@@ -47,6 +48,9 @@ class TransactionController extends Controller
 
     public function checkout(Request $request)
     {
+        $k = kupon::all();
+        return $k;
+        // if(){eb
         transaction::create($request->all());
         $carts = cart::all();
         $trx = transaction::latest()->first()->id;
@@ -58,7 +62,6 @@ class TransactionController extends Controller
                 'subtotal' => $c->item->price*$c->qty
             ]);
         }
-
         cart::truncate();
         
         return redirect(route('transaction.show', transaction::latest()->first()->id));
