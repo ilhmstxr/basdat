@@ -11,7 +11,12 @@ class user_kupon extends Model
 
     protected $guarded = [];
 
-    public function kupon()
+    public function kupons()
+    {
+        return $this->belongsTo(kupon::class);
+    }
+
+    public function user()
     {
         return $this->belongsTo(kupon::class);
     }

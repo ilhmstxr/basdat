@@ -48,23 +48,28 @@ class TransactionController extends Controller
 
     public function checkout(Request $request)
     {
-        $k = kupon::all();
+        $k = kupon::find(1)->get('harga_ketentuan');
         return $k;
-        // if(){eb
-        transaction::create($request->all());
-        $carts = cart::all();
-        $trx = transaction::latest()->first()->id;
-        foreach($carts as $c){
-            TransactionDetail::create([
-                'transaction_id' => $trx,
-                'item_id' => $c->item_id,
-                'qty' => $c->qty,
-                'subtotal' => $c->item->price*$c->qty
-            ]);
+        if($k == ){
+
         }
-        cart::truncate();
-        
-        return redirect(route('transaction.show', transaction::latest()->first()->id));
+
+        // return redirect()->back();
+        // transaction::create($request->all());
+        // $carts = cart::all();
+        // $trx = transaction::latest()->first()->id;
+        // foreach($carts as $c){
+        //     TransactionDetail::create([
+        //         'transaction_id' => $trx,
+        //         'item_id' => $c->item_id,
+        //         'qty' => $c->qty,
+        //         'subtotal' => $c->item->price*$c->qty
+        //     ]);
+        // }
+        // cart::truncate();
+
+
+        // return redirect(route('transaction.show', transaction::latest()->first()->id));
     }
 
     public function history()
@@ -72,7 +77,7 @@ class TransactionController extends Controller
         return view('historytransaction');
     }
 
-    
+
 
     /**
      * Display the specified resource.
@@ -110,7 +115,6 @@ class TransactionController extends Controller
         $i = cart::findorfail($id);
         $i->update($request->all());
         return redirect('transaction')->with('status', 'qty update');
-
     }
 
     /**

@@ -12,7 +12,7 @@
     <div id="wrapper">
 
         <!--sidebar-->
-        @include('layouts.sidebar')
+        {{-- @include('layouts.sidebar') --}}
         <!--end of sidebar-->
 
         <!-- Content Wrapper -->

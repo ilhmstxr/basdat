@@ -11,7 +11,7 @@ class kupon extends Model
 
     protected $guarded = [];
 
-    public function user()
+    public function kupons()
     {
         return $this->hasMany(user_kupon::class);
     }
