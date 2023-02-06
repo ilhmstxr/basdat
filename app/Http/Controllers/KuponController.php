@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\kupon;
-use App\Models\user_kupon;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class KuponController extends Controller
@@ -20,6 +18,8 @@ class KuponController extends Controller
         // return $kupon;
         return view('kupon.index',compact('kupon'));
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -106,13 +106,7 @@ class KuponController extends Controller
 
     public function userkupon()
     {
-        $userK = user_kupon::all();
-        $userK3 = kupon::all();
-        $userM = User::all();
-
-        // return $userM;
-        // return $userK;
-        return view ('user.index', compact('userK', 'userM', 'userK3'));
+        
     }
 
     public function destroy($id)

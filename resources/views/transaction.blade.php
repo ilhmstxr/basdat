@@ -122,6 +122,8 @@
                                 @endforeach
                             @endif
 
+                            
+
 
                             <form action="{{ route('transaction.checkout') }}" method="POST">
                                 @csrf
