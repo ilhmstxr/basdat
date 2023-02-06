@@ -18,11 +18,14 @@ class user_kupon extends Model
 
     public function user()
     {
+<<<<<<< HEAD
         return $this->belongsTo(kupon::class);
     }
 
     public function user()
     {
+=======
+>>>>>>> f43447d66b09b37873a1d8fcdecf03a71bec4562
         return $this->belongsTo(user::class);
     }
 }

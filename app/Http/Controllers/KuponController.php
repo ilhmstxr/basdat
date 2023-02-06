@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\kupon;
+<<<<<<< HEAD
 use App\Models\user_kupon;
 use App\Models\User;
+=======
+>>>>>>> f43447d66b09b37873a1d8fcdecf03a71bec4562
 use Illuminate\Http\Request;
 
 class KuponController extends Controller
@@ -108,6 +111,7 @@ class KuponController extends Controller
 
     public function userkupon()
     {
+<<<<<<< HEAD
         $userK = user_kupon::all();
         $userK3 = kupon::all();
         $userM = User::all();
@@ -119,6 +123,9 @@ return redirect('profile', compact('a'));
         // return $userM;
         // return $userK;
         return view ('user.index', compact('userK', 'userM', 'userK3'));
+=======
+        
+>>>>>>> f43447d66b09b37873a1d8fcdecf03a71bec4562
     }
 
     public function destroy($id)

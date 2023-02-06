@@ -48,33 +48,31 @@ class TransactionController extends Controller
 
     public function checkout(Request $request)
     {
-        $k = kupon::find(1)->get('harga_ketentuan');
-        return $k;
-        if($k == ){
-
-        }
-
+        // $k = kupon::find(1)->get('harga_ketentuan');
+        // return $k;
+        
         // return redirect()->back();
-        // transaction::create($request->all());
-        // $carts = cart::all();
-        // $trx = transaction::latest()->first()->id;
-        // foreach($carts as $c){
-        //     TransactionDetail::create([
-        //         'transaction_id' => $trx,
-        //         'item_id' => $c->item_id,
-        //         'qty' => $c->qty,
-        //         'subtotal' => $c->item->price*$c->qty
-        //     ]);
-        // }
-        // cart::truncate();
+        transaction::create($request->all());
+        $carts = cart::all();
+        $trx = transaction::latest()->first()->id;
+        foreach($carts as $c){
+                TransactionDetail::create([
+                'transaction_id' => $trx,
+                'item_id' => $c->item_id,
+                'qty' => $c->qty,
+                'subtotal' => $c->item->price*$c->qty
+            ]);
+        }
+        cart::truncate();
 
 
-        // return redirect(route('transaction.show', transaction::latest()->first()->id));
+        return redirect(route('transaction.show', transaction::latest()->first()->id));
     }
 
     public function history()
     {
-        return view('historytransaction');
+        $t = Transaction::all();
+        return view('historytransaction',compact('t'));
     }
 
 

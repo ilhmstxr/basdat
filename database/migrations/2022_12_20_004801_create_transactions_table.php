@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedBigInteger('userkupon_id')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('userkupon_id')->references('id')->on('user_kupons')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

@@ -56,6 +56,10 @@
                                 <td>{{ $trx->pay_total - $trx->total }}</td>
                             </tr>
                         </table>
+                        <div class="d-flex flex-row-reverse">
+                            <a href="{{ route('transaction.history') }}" class="btn btn-sm btn-success">history</a>
+                            <a href="{{ route('transaction.index') }}" class="btn btn-sm btn-danger mx-2">kembali</a>
+                        </div>
                     </div>
                 </div>
             </div>
