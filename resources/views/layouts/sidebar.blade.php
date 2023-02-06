@@ -1,4 +1,4 @@
-<div class="col-md-4 ">
+{{-- <div class="col-md-4 ">
     <div class="card">
         <div class="card-header">{{ __('Add Item') }}</div>
 
@@ -31,7 +31,6 @@
                                 <form method="POST" action="{{ route('transaction.update',$c->cart->id) }}">
                                     @csrf
                                     @method('put')
-                                    {{-- <input type="hidden" name="id"> --}}
                                     <input type="number" class="form-control" name="qty" min="1"
                                         max="{{ $c->stock + $c->cart->qty }}"
                                         onchange="update{{ $loop->iteration }}()" value="{{ $c->cart->qty }}">
@@ -44,7 +43,6 @@
                                 <form method="POST" action="{{ route('transaction.destroy', $c->cart->id )}}">
                                     @csrf
                                     @method('delete')
-                                    {{-- <input type="hidden" name="id" id="id" value="{{ $cart->id }}"> --}}
                                     <input type="submit" class="btn btn-sm btn-danger"
                                         id="hapus{{ $loop->iteration }}" style="display: " value="hapus">
                                 </form>
@@ -82,4 +80,4 @@
             </form>
         </div>
     </div>
-</div>
+</div> --}}
