@@ -108,19 +108,6 @@
 
 
             <div class="col-md-4">
-                <div class="card mb-2 pb-2">
-                    <div class="card-header">Kupon</div>
-
-                    <div class="container py-3">
-                        <div class="btn-group-toggle" data-toggle="buttons">
-                            {{-- <p>Kupon anda : {{ $kupon->quantity_kupon }}</p> --}}
-                            <label class="btn btn-secondary active justify-content-end">
-                                <input type="checkbox" checked autocomplete="off"> pakai kupon
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="card">
                     <div class="card-header">{{ __('Keranjang') }}</div>
 
