@@ -179,13 +179,19 @@
                                             value="{{ $cart->sum(function ($item) {
                                                 return $item->price * $item->cart->qty;
                                             }) }}"
-                                            readonly name="total"></td>
+                                            readonly name="total">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">Payment</td>
                                     <td colspan="3"><input type="number" class="form-control" name="pay_total"
                                             min="{{ $cart->sum(function ($item) {return $item->price * $item->cart->qty;}) }}"
-                                            required></td>
+                                            required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">kupon anda </td>
+                                    <td colspan="1"><input type="number" class="form-control" readonly></td>
                                 </tr>
                         </table>
                         <button class="btn btn-primary text-light">save</button>
