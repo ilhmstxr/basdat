@@ -33,7 +33,7 @@
                                     <td>{{ $trx->user->name }}</td>
                                     <td>
 
-                                        <a href="{{ route('transaction.show', $t->id) }}"
+                                        <a href="{{ route('transaction.show',$trx->id) }}"
                                             class="btn btn-sm btn-success">Detail</a>
                                     </td>
                                 </tr>

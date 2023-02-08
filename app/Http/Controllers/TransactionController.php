@@ -8,9 +8,14 @@ use App\Models\Cart;
 use App\Models\Transaction;
 use App\Models\kupon;
 use App\Models\TransactionDetail;
+use App\Models\user_kupon;
 
 class TransactionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,31 +53,52 @@ class TransactionController extends Controller
 
     public function checkout(Request $request)
     {
-        // $k = kupon::find(1)->get('harga_ketentuan');
-        // return $k;
+        $kpn = kupon::find(1)->get();
         
-        // return redirect()->back();
-        transaction::create($request->all());
+        $trans = transaction::create($request->all());
         $carts = cart::all();
         $trx = transaction::latest()->first()->id;
-        foreach($carts as $c){
-                TransactionDetail::create([
+        $t = [];
+        foreach ($carts as $c) {
+            $t = TransactionDetail::create([
                 'transaction_id' => $trx,
                 'item_id' => $c->item_id,
                 'qty' => $c->qty,
-                'subtotal' => $c->item->price*$c->qty
+                'subtotal' => $c->item->price * $c->qty
             ]);
         }
+
+
+        $ht = $trans->total;
+        $kont = [];
+        foreach($kpn as $k){
+            $kont = $k->harga_ketentuan;
+        }
+        
+        $uk = auth()->user();
+        $user_kupon = user_kupon::where('user_id',$uk)->get();
+        
+        return $user_kupon;
+        return $uk;
+        if ($ht >= $kont){
+            
+            return redirect(route('transaction.show', transaction::latest()->first()->id));
+        }else{
+            
+            return redirect(route('transaction.show', transaction::latest()->first()->id));
+        }
+
+
+
         cart::truncate();
 
-
-        return redirect(route('transaction.show', transaction::latest()->first()->id));
     }
 
     public function history()
     {
         $t = Transaction::all();
-        return view('historytransaction',compact('t'));
+        // return $t;
+        return view('historytransaction', compact('t'));
     }
 
 

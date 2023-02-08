@@ -19,10 +19,18 @@
                             <tr>
                                 <td class="col-md-6">Date</td>
                                 <td>: {{ $trx->created_at }}</td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td class="col-md-6">Served By</td>
                                 <td>: {{ $trx->user->name }}</td>
+                            </tr>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Kupon </td>
+                                <td>:
+                                    {{-- {{ $trx->user->name }} --}}
+                                </td>
+                                {{-- <td>: {{ $trx->user->name }}</td> --}}
                             </tr>
                         </table>
 
