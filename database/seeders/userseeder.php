@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\user_kupon;
 
 class userseeder extends Seeder
 {
@@ -32,5 +33,7 @@ class userseeder extends Seeder
             'email' => 'tsanny@gmail.com',
             'password' => bcrypt('12345'),
         ]);
+        
     }
+    
 }

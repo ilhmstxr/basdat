@@ -113,13 +113,14 @@
 
                     <div class="container py-3">
                         <div class="btn-group-toggle" data-toggle="buttons">
-                            <p>Kupon anda : 1</p>
+                            {{-- <p>Kupon anda : {{ $kupon->quantity_kupon }}</p> --}}
                             <label class="btn btn-secondary active justify-content-end">
                                 <input type="checkbox" checked autocomplete="off"> pakai kupon
                             </label>
                         </div>
                     </div>
                 </div>
+
                 <div class="card">
                     <div class="card-header">{{ __('Keranjang') }}</div>
 
@@ -152,7 +153,6 @@
                                             <form method="POST" action="{{ route('transaction.update', $c->cart->id) }}">
                                                 @csrf
                                                 @method('put')
-                                                {{-- <input type="hidden" name="id"> --}}
                                                 <input type="number" class="form-control" name="qty" min="1"
                                                     max="{{ $c->stock + $c->cart->qty }}"
                                                     onchange="update{{ $loop->iteration }}()" value="{{ $c->cart->qty }}">
@@ -165,7 +165,6 @@
                                             <form method="POST" action="{{ route('transaction.destroy', $c->cart->id) }}">
                                                 @csrf
                                                 @method('delete')
-                                                {{-- <input type="hidden" name="id" id="id" value="{{ $cart->id }}"> --}}
                                                 <input type="submit" class="btn btn-sm btn-danger"
                                                     id="hapus{{ $loop->iteration }}" style="display: " value="hapus">
                                             </form>
@@ -190,10 +189,9 @@
                                 <tr>
                                     <td colspan="2">Total</td>
                                     <td colspan="3"><input type="number" class="form-control"
-                                            value="{{
-                                             $cart->sum(function ($item) {
-                                                return $item->price * $item->cart->qty;}) 
-                                                }}"
+                                            value="{{ $cart->sum(function ($item) {
+                                                return $item->price * $item->cart->qty;
+                                            }) }}"
                                             readonly name="total"></td>
                                 </tr>
                                 <tr>

@@ -25,7 +25,7 @@ return new class extends Migration
         });
 
         db::unprepared('CREATE TRIGGER `default_cupon` AFTER INSERT ON `users`
-        FOR EACH ROW INSERT INTO `user_kupons` (`id`, `user_id`, `kupon_id`, `quantity_kupon`, `created_at`, `updated_at`) VALUES (NULL, NEW.id, NULL, 0, NULL, NULL)
+        FOR EACH ROW INSERT INTO `user_kupons` (`id`, `user_id`, `kupon_id`, `quantity_kupon`, `created_at`, `updated_at`) VALUES (NULL, NEW.id, 1, 0, NULL, NULL)
         ');
 
     }

@@ -19,7 +19,7 @@ class itemseeder extends Seeder
         item::create([
             'name' => 'nasi goreng',
             'price' => '16000',
-            'stock' => '21',
+            'stock' => '999921',
             'img' => '',
             'category_id' => '1'
         ]);
@@ -27,7 +27,7 @@ class itemseeder extends Seeder
         item::create([
             'name' => 'mie goreng',
             'price' => '13000',
-            'stock' => '18',
+            'stock' => '99918',
             'img' => '',
             'category_id' => '1'
         ]);
@@ -35,15 +35,15 @@ class itemseeder extends Seeder
         item::create([
             'name' => 'coca cola',
             'price' => '6000',
-            'stock' => '25',
+            'stock' => '99925',
             'img' => '',
             'category_id' => '2'
         ]);
 
         item::create([
-            'name' => 'nasi goreng',
-            'price' => '5000',
-            'stock' => '30',
+            'name' => 'ketoprak',
+            'price' => '8000',
+            'stock' => '99930',
             'img' => '',
             'category_id' => '2'
         ]);

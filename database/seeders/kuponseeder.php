@@ -22,12 +22,12 @@ class kuponseeder extends Seeder
             'diskon' => '0.20'
         ]);
 
-        kupon::create([
-            // 'nama_kupon' => 'kupon a',
-            'stok' => ' 100',
-            'harga_ketentuan' => '2000000',
-            'diskon' => '0.20'
-        ]);
+        // kupon::create([
+        //     // 'nama_kupon' => 'kupon a',
+        //     'stok' => ' 100',
+        //     'harga_ketentuan' => '2000000',
+        //     'diskon' => '0.20'
+        // ]);
 
         // kupon::create([
         //     'nama_kupon' => 'kupon b',

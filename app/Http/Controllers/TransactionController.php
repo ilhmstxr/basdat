@@ -25,7 +25,9 @@ class TransactionController extends Controller
     {
         $item = item::doesnthave('cart')->where('stock', '>', 0)->get();
         $cart = item::has('cart')->get()->sortByDesc('cart.created_at');
-        // return $item;
+        // $user = auth()->user()->id;
+        // $kupon = user_kupon::find($user);
+        // return $kupon;
         return view('transaction', compact('item', 'cart'));
     }
 
@@ -55,6 +57,7 @@ class TransactionController extends Controller
     {
 
         $trans = transaction::create($request->all());
+        $ht = $trans->total;
         $carts = cart::all();
         $trx = transaction::latest()->first()->id;
         $t = [];
@@ -66,29 +69,42 @@ class TransactionController extends Controller
                 'subtotal' => $c->item->price * $c->qty
             ]);
         }
-        $ht = $trans->total;
-
-
+        
         $kpn = kupon::find(1);
         $hk = $kpn->harga_ketentuan;
-
-
         $uk = auth()->user()->id;
+        // $jmluk = user_kupon::all();
+        // return $user_kupon;
+        // if($jmluk == ){
+        //     user_kupon::create([
+        //         'user_id' => $uk ,
+        //         'kupon_id' => 1 ,
+        //         'quantity_kupon' => 1,
+        //     ]);
+        // }
+        
         $user_kupon = user_kupon::where('id', $uk)->get();
         $jumlahkupon = $user_kupon[0]['quantity_kupon'];
+        // return $kpn;
+
+        // elseif($user_kupon['kupon_id' == null]){
+
+        // }
+
         if ($ht >= $hk) {
             $user_kupon = $request->quantity_kupon;
             user_kupon::where('id', $uk)->update([
                 'quantity_kupon' =>  $jumlahkupon += 1
             ]);
 
-            // return true;
+            
+            cart::truncate();
+            return redirect(route('transaction.show', transaction::latest()->first()->id))->with('status', 'selamat !, anda mendapatkan kupon');
+        }else{
+            
+            cart::truncate();
+            return redirect(route('transaction.show', transaction::latest()->first()->id));
         }
-
-        return redirect(route('transaction.show', transaction::latest()->first()->id));
-
-
-        cart::truncate();
     }
 
     public function history()

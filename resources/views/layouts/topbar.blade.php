@@ -34,6 +34,29 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        <li class="nav-item px-2">
+                            <a href="{{ route('category.index') }}"
+                                style="text-decoration: none; color: inherit">category</a>
+                        </li>
+                        <div class="vr"></div>
+                        <li class="nav-item px-2">
+                            <a href="{{ route('items.index') }}" style="text-decoration: none; color: inherit">item</a>
+                        </li>
+                        <div class="vr"></div>
+                        <li class="nav-item px-2">
+                            <a href="{{ route('transaction.index') }}"
+                                style="text-decoration: none; color: inherit">transaction</a>
+                        </li>
+                        <div class="vr"></div>
+                        <li class="nav-item px-2">
+                            <a href="{{ route('transaction.history') }}"
+                                style="text-decoration: none; color: inherit">history</a>
+                        </li>
+                        <div class="vr"></div>
+                        <li class="nav-item px-2">
+                            <a href="{{ route('kupon.index') }}"
+                                style="text-decoration: none; color: inherit">kupon</a>
+                        </li>
 
                     </ul>
 
@@ -80,7 +103,7 @@
                                         </form>
                                     </div>
 
-                                    
+
                                 </div>
                             </li>
                         @endguest

@@ -24,14 +24,6 @@
                                 <td class="col-md-6">Served By</td>
                                 <td>: {{ $trx->user->name }}</td>
                             </tr>
-                            </tr>
-                            <tr>
-                                <td class="col-md-6">Kupon </td>
-                                <td>:
-                                    {{-- {{ $trx->user->name }} --}}
-                                </td>
-                                {{-- <td>: {{ $trx->user->name }}</td> --}}
-                            </tr>
                         </table>
 
                         <table class="table table-responsive table-striped">
