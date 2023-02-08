@@ -26,6 +26,10 @@ class item extends Model
         return $this->hasManyThrough(transaction::class, TransactionDetail::class);
     }
 
+    // public function kupon(){
+    //     return $this->; 
+    // }
+
 
 
 }
