@@ -28,11 +28,10 @@ return new class extends Migration
         });
 
         
-        DB::unprepared('CREATE TRIGGER `get_cupon` AFTER INSERT ON `transactions`
-        FOR EACH ROW UPDATE user_kupons 
-        SET user_kupons.quantity_kupon = user_kupons.quantity_kupon +1
-        
-        ');
+        // DB::unprepared('CREATE TRIGGER `get_cupon` AFTER INSERT ON `transactions`
+        // FOR EACH ROW UPDATE user_kupons 
+        // SET user_kupons.quantity_kupon = user_kupons.quantity_kupon +1
+        // ');
     }
 
     /**

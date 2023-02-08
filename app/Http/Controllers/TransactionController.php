@@ -53,8 +53,7 @@ class TransactionController extends Controller
 
     public function checkout(Request $request)
     {
-        $kpn = kupon::find(1)->get();
-        
+
         $trans = transaction::create($request->all());
         $carts = cart::all();
         $trx = transaction::latest()->first()->id;
@@ -67,31 +66,29 @@ class TransactionController extends Controller
                 'subtotal' => $c->item->price * $c->qty
             ]);
         }
-
-
         $ht = $trans->total;
-        $kont = [];
-        foreach($kpn as $k){
-            $kont = $k->harga_ketentuan;
-        }
-        
-        $uk = auth()->user();
-        $user_kupon = user_kupon::where('user_id',$uk)->get();
-        
-        return $user_kupon;
-        return $uk;
-        if ($ht >= $kont){
-            
-            return redirect(route('transaction.show', transaction::latest()->first()->id));
-        }else{
-            
-            return redirect(route('transaction.show', transaction::latest()->first()->id));
+
+
+        $kpn = kupon::find(1);
+        $hk = $kpn->harga_ketentuan;
+
+
+        $uk = auth()->user()->id;
+        $user_kupon = user_kupon::where('id', $uk)->get();
+        $jumlahkupon = $user_kupon[0]['quantity_kupon'];
+        if ($ht >= $hk) {
+            $user_kupon = $request->quantity_kupon;
+            user_kupon::where('id', $uk)->update([
+                'quantity_kupon' =>  $jumlahkupon += 1
+            ]);
+
+            // return true;
         }
 
+        return redirect(route('transaction.show', transaction::latest()->first()->id));
 
 
         cart::truncate();
-
     }
 
     public function history()
