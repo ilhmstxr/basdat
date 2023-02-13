@@ -21,6 +21,9 @@ class Transaction extends Model
         return $this->belongsTo(user::class);
     }
 
+    public function userkupon(){
+        return $this->belongsTo(user_kupon::class);
+    }
 
 
 }
