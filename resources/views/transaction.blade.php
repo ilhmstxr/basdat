@@ -191,8 +191,11 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">kupon anda </td>
-                                    <td colspan="1"><input type="number" class="form-control" readonly></td>
+                                    <td colspan="1"><input type="number" class="form-control" readonly value="{{$kupon -> quantity_kupon}}"></td>
+                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="outline-primary" data-offstyle="outline-secondary">
+
                                 </tr>
+                                
                         </table>
                         <button class="btn btn-primary text-light">save</button>
                         <input type="reset" class="btn btn-danger text-light" value="cancel">
