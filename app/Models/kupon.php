@@ -15,4 +15,8 @@ class kupon extends Model
     {
         return $this->hasMany(user_kupon::class);
     }
+
+    // public function item(){
+    //     return $this->
+    // }
 }

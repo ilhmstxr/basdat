@@ -27,8 +27,14 @@ class TransactionController extends Controller
         $cart = item::has('cart')->get()->sortByDesc('cart.created_at');
         $user = auth()->user()->id;
         $kupon = user_kupon::find($user);
+<<<<<<< HEAD
         // return $kupon;
         return view('transaction', compact('item', 'cart', 'kupon'));
+=======
+        $k = kupon::find(1);
+        // return $kupon;
+        return view('transaction', compact('item', 'cart','kupon','k'));
+>>>>>>> 06218b4ef454df4a2cf7accf9115225f7ec75731
     }
 
     /**
@@ -107,6 +113,12 @@ class TransactionController extends Controller
         }
     }
 
+    public function kupon()
+    {
+        // return true;
+        return redirect()->back()->with('status', 'kupon berhasil ditambahkan');
+    }
+
     public function history()
     {
         $t = Transaction::all();
@@ -124,7 +136,12 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        $trx = Transaction::find($id);
+        // return $id;
+        // return redirect()->back();
+        $r = auth()->user()->id;
+        // return $r;
+        // $trx = Transaction::where('userkupon_id',$r)->with('user ')->get();
+        $trx = transaction::find($id);  
         // return $trx;
         return view('detailtransaction', compact('trx'));
     }
@@ -167,3 +184,6 @@ class TransactionController extends Controller
         return redirect()->back()->with('status', 'item berhasil dihapus dari keranjang');
     }
 }
+
+
+?>

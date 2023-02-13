@@ -3,59 +3,6 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            {{-- <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Transaction') }}</div>
-
-                    <div class="card-body">
-                        @if (count($errors) > 0)
-                            <div class="alert alert-success" role="alert">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </div>
-                        @endif
-
-
-                        <table class="table table-responsive table-striped">
-                            <thead>
-                                <td>#</td>
-                                <td>Category</td>
-                                <td>name</td>
-                                <td>price</td>
-                                <td>stock</td>
-                                <td>action</td>
-                            </thead>
-                            @if ($item->isEmpty())
-                                <tr>
-                                    <td colspan="6" class="text-center">All item is empty</td>
-                                </tr>
-                            @endif
-                            
-
-                            @foreach ($item as $i)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $i->category->nama }}</td>
-                                    <td>{{ $i->name }}</td>
-                                    <td>Rp {{ number_format($i->price) }}</td>
-                                    <td>{{ $i->stock }}</td>
-                                    <td>
-                                        <form action="{{ route('transaction.store') }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" value="{{ $i->id }}" name="item_id">
-                                            <input type="hidden" class="form-control" name="qty" value="1">
-                                            <button type="submit" class="btn btn-sm btn-success">Add to cart</button>
-                                        </form>
-                                    <td>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </table>
-                    </div>
-                </div>
-            </div> --}}
 
             <div class="col-md-8">
                 <div class="card">
@@ -175,32 +122,87 @@
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                 <tr>
                                     <td colspan="2">Total</td>
-                                    <td colspan="3"><input type="number" class="form-control"
+                                    <td colspan="3"><input type="number" class="form-control" id="total"
                                             value="{{ $cart->sum(function ($item) {
                                                 return $item->price * $item->cart->qty;
                                             }) }}"
                                             readonly name="total">
+                                    <td colspan="3"><input type="hidden" class="form-control" id="ha"
+                                            value="" readonly name="ha">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">Payment</td>
+                                    <input type="hidden" id="pay">
                                     <td colspan="3"><input type="number" class="form-control" name="pay_total"
-                                            min="{{ $cart->sum(function ($item) {return $item->price * $item->cart->qty;}) }}"
-                                            required>
+                                            min="{{ $cart->sum(function ($item) {
+                                                return $item->price * $item->cart->qty;
+                                            }) }}"
+                                            id="disc" required>
+
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">kupon anda </td>
+<<<<<<< HEAD
                                     <td colspan="1"><input type="number" class="form-control" readonly value="{{$kupon -> quantity_kupon}}"></td>
                                     <input type="checkbox" checked data-toggle="toggle" data-onstyle="outline-primary" data-offstyle="outline-secondary">
 
                                 </tr>
                                 
+=======
+                                    <td colspan="1"><input type="number" id="jk" class="form-control"
+                                            value="{{ $kupon->quantity_kupon }}" readonly></td>
+                                    {{-- @if ($kupon == null)
+                                        <td colspan="1" ><input type="number" id="jk" class="form-control" value="0"></td>
+                                    @else --}}
+                                    {{-- @endif --}}
+
+                                    {{-- <td>
+                                        <input type="checkbox" id="pakai"
+                                            onchange="pakaikupon({{ $k->diskon }})">pakai
+                                    </td>
+                                    <td>
+                                        <p id="text" style="display:none">Checkbox is CHECKED!</p>
+                                    </td> --}}
+
+                                </tr>
+                                <script>
+                                    function pakaikupon(diskon) {
+
+                                        let checkbox = document.getElementById("pakai");
+                                        // let diskon = document.getElementById("diskon");
+                                        let jk = document.getElementById("jk");
+                                        let total = document.getElementById("total");
+                                        let ha = document.getElementById("ha");
+                                        let pay = document.getElementById("pay");
+
+                                        const val = document.query
+                                        if (checkbox.checked) {
+                                            jk.value = parseInt(jk.value) - 1;
+                                            total.value = (total.value * (1 - diskon));
+                                            pay.value = total.value;
+                                            console.log(total.value);
+
+                                        } else {
+                                            jk.value = parseInt(jk.value) + 1;
+                                            total.value = (ha.value);
+                                        }
+
+                                    }
+                                </script>
+>>>>>>> 06218b4ef454df4a2cf7accf9115225f7ec75731
                         </table>
                         <button class="btn btn-primary text-light">save</button>
                         <input type="reset" class="btn btn-danger text-light" value="cancel">
-                        </form>
-                    </div>
+                    </form>
+                        
+                            <form action="{{ route('transaction.kupon') }}">
+                                @csrf
+                                <button class="btn btn-primary text-light">button nggo kupon</button>
+                            </form>
+
+                        </div>
                 </div>
             </div>
         </div>

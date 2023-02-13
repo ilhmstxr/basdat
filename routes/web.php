@@ -36,6 +36,7 @@ Route::resource('kupon', kuponController::class);
 route::resource('profile', UserProfileController::class);
 route::get('userkupon', [KuponController::class, 'userkupon'])->name('kupon.user');
 route::get('history', [TransactionController::class, 'history'])->name('transaction.history');
+route::get('tansaction/kupon', [TransactionController::class, 'kupon'])->name('transaction.kupon');
 route::post('transaction/checkout', [TransactionController::class, 'checkout'])->name('transaction.checkout');
 // route::get('coba', function () {
 //     return view('profile');

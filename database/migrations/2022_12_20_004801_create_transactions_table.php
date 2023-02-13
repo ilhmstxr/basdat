@@ -16,8 +16,8 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id('id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('userkupon_id')->nullable();
-            $table->unsignedBigInteger('user_id');
             $table->foreign('userkupon_id')->references('id')->on('user_kupons')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
@@ -32,6 +32,11 @@ return new class extends Migration
         // FOR EACH ROW UPDATE user_kupons 
         // SET user_kupons.quantity_kupon = user_kupons.quantity_kupon +1
         // ');
+
+        // db::unprepared('CREATE TRIGGER `default_cupon` BEFORE INSERT ON `transactions`
+        // FOR EACH ROW INSERT INTO 
+        // `user_kupons` (`user_id`, `kupon_id`, `quantity_kupon`, `created_at`, `updated_at`) 
+        // VALUES (new.user_id, 1, NULL, NULL, NULL)');
     }
 
     /**
