@@ -27,10 +27,14 @@ class TransactionController extends Controller
         $item = item::doesnthave('cart')->where('stock', '>', 0)->get();
         $cart = item::has('cart')->get()->sortByDesc('cart.created_at');
         $user = auth()->user()->id;
-        $kupon = user_kupon::find($user);
+        $kupon = user_kupon::find($user);        
         $k = kupon::find(1);
+        $uk = $kupon->quantity_kupon;
+
+        // return $uk;
         // return $kupon;
-        return view('transaction', compact('item', 'cart', 'kupon', 'k'));
+        // return $kupon;
+        return view('transaction', compact('item', 'cart','kupon','k', 'uk'));
     }
 
     /**
@@ -84,7 +88,7 @@ class TransactionController extends Controller
                 'subtotal' => $c->item->price * $c->qty
             ]);
         }
-
+        
         $kpn = kupon::find(1);
         $hk = $kpn->harga_ketentuan;
         $uk = auth()->user()->id;
@@ -98,7 +102,7 @@ class TransactionController extends Controller
                 'quantity_kupon' =>  $jumlahkupon += 1
             ]);
 
-
+            
             cart::truncate();
             return redirect(route('transaction.show', transaction::latest()->first()->id))->with('status', 'selamat !, anda mendapatkan kupon');
         } else {

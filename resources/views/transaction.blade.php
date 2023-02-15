@@ -129,8 +129,21 @@
                                     </td>
                                     <td>
                                         <input type="checkbox" id="pakai"
+                                    <td colspan="1"><input type="number" id="jk" class="form-control"
+                                            value="{{ $kupon->quantity_kupon }}" readonly></td>
+                                        @if ($uk == 0)
+                                            <td>
+                                               {{-- <h1>kosong cuyh</h1> --}}
+                                                <input type="checkbox" data-toggle="switchbutton" checked data-size="lg" id="pakai" value="" disabled onchange="pakaikupon({{$k->diskon}})">pakai
+                                            </td>
+                                        @else
+                                            <td>
+                                                <input type="checkbox" id="pakai" onchange="pakaikupon({{$k->diskon}})">pakai
+                                            </td>
+                                        @endif
+                                    {{-- <td><input type="checkbox" id="pakai"
                                             onchange="pakaikupon({{ $k->diskon }})">pakai
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <p id="text" style="display:none">Checkbox is CHECKED!</p>
                                     </td>

@@ -28,6 +28,9 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        db::unprepared('CREATE TRIGGER `min_cupon` AFTER UPDATE ON `user_kupons`
+        FOR EACH ROW UPDATE `kupons` SET kupons.stok = kupons.stok -1  WHERE `kupons`.`id` = 1');
+
         // DB::unprepared('CREATE TRIGGER `min_cupon` AFTER UPDATE ON `user_kupons`
         // FOR EACH ROW UPDATE kupons SET kupons.stok = kupons.stok - 1
         // ');
@@ -36,6 +39,8 @@ return new class extends Migration
         db::unprepared('CREATE TRIGGER `min_cupon` AFTER UPDATE ON `user_kupons`
         FOR EACH ROW UPDATE `kupons` SET kupons.stok = kupons.stok -1  WHERE `kupons`.`id` = 1');
     }
+
+    
 
 
 
