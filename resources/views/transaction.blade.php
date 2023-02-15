@@ -120,6 +120,7 @@
                             <form action="{{ route('transaction.checkout') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="userkupon_id" value="{{ Auth::user()->id }}">
                                 <tr>
                                     <td colspan="2">kupon anda </td>
                                     <td colspan="1"><input type="number" id="jk" class="form-control"
