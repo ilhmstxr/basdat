@@ -32,19 +32,28 @@
 
                             <div class="form-group">
                                 <label for="">Item Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="{{ $item->name }}">
+                                <input type="text" class="form-control" name="name" value="{{ $item->name }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Image</label>
+                                <input type="file" class="form-control" name="img" id="img" value="{{ $item->img }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Description</label>
+                                <input type="text" class="form-control" name="deskripsi" value="{{ $item->deskripsi }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="">Price</label>
-                                <input type="number" class="form-control" name="price" placeholder="{{ $item->price }}">
+                                <input type="number" class="form-control" name="price" value="{{ $item->price }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="">Stock</label>
-                                <input type="number" class="form-control" name="stock" placeholder="{{ $item->stock }}">
+                                <input type="number" class="form-control" name="stock" value="{{ $item->stock }}">
                             </div>
-
 
                             <div class="form-group mt-2">
                                 <button class="btn btn-sm btn-success">Simpan</button>

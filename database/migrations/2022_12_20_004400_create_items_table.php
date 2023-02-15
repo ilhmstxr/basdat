@@ -20,7 +20,8 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->string('name');
-            $table->char('img')->nullable();
+            $table->char('img');
+            $table->string('deskripsi');
             $table->Unsignedinteger('price');
             $table->Unsignedinteger('stock');
             $table->timestamps();

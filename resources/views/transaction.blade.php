@@ -21,10 +21,10 @@
                         <div class="row">
                             @foreach ($item as $i)
                                 <div class="card mx-3" style="width: 13rem;">
-                                    <img src="{{ asset('img/e.png') }}" class="card-img-top py-3" alt="...">
+                                    <img src="{{ asset('./img/'.$i->img) }}"   class="card-img-top py-3" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $i->name }}</h5>
-                                        <p class="card-text">Mie goreng sederhana yang lezat dan nikmat bagi semua kalangan
+                                        <p class="card-text">{{$i->deskripsi}}
                                         </p>
                                     </div>
                                     <ul class="list-group list-group-flush">
