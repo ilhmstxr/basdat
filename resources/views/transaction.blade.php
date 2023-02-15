@@ -129,8 +129,7 @@
                                             <input type="number" class="form-control" value="0" readonly>
                                         </td>
                                         <td>
-                                            {{-- <input type="number" class="form-control" value="0" readonly> --}}
-                                            {{-- <input type="checkbox" data-toggle="switchbutton" checked data-size="lg" id="pakai" value="" disabled onchange="pakaikupon({{$k->diskon}})">pakai --}}
+                                            <input type="checkbox" class="form-check-input" id="pakai" disabled onchange="pakaikupon({{$k->diskon}})">
                                         </td>
                                     @else
                                         <td>
@@ -138,13 +137,10 @@
                                                 value="{{ $kupon->quantity_kupon }}" readonly>
                                         </td>
                                         <td>
-                                            <input type="checkbox" id="pakai"
-                                                onchange="pakaikupon({{ $k->diskon }})">pakai
+                                            <input type="checkbox" class="form-check-input" id="pakai" onchange="pakaikupon({{$k->diskon}})"> Pakai
                                         </td>
                                     @endif
-                                    {{-- <td><input type="checkbox" id="pakai"
-                                            onchange="pakaikupon({{ $k->diskon }})">pakai
-                                    </td> --}}
+
                                     <td>
                                         <p id="text" style="display:none">Checkbox is CHECKED!</p>
                                     </td>
