@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\item;
 use App\Models\Category;
+use Illuminate\Support\Facades\File;
 
 class ItemsController extends Controller
 {
@@ -47,17 +48,31 @@ class ItemsController extends Controller
         $this->validate($request,[
             'category_id' => 'required', 
             'name' => 'required', 
+            'img' => 'mimes:jpg,png', 
+            'deskripsi' => 'required', 
             'stock' => 'required|numeric', 
             'price' => 'required|numeric', 
          ]);
 
-         item::create([
+         
+
+         //ambil informasi file yang di upload 
+        $file = $request->file('img');
+        //rename 
+        $nama_file = time()."_".$file->getClientOriginalName();
+        //proses upload 
+        $tujuan_upload= './template/img';
+        $file->move($tujuan_upload,$nama_file); 
+        // return $item;
+
+        item::create([
             'category_id' => $request->category_id,
             'name' => $request->name,
+            'img' => $request->file('img'),
+            'deskripsi' => $request->deskripsi,
             'price' => $request->price,
             'stock' => $request->stock,
          ]);
-        // return $item;
 
         return redirect()->back()->with('status', 'item berhasil disimpan');
     }
@@ -100,6 +115,8 @@ class ItemsController extends Controller
         $this->validate($request,[
            'category_id' => 'required', 
            'name' => 'required', 
+           'img' => 'required',
+           'deskripsi' => 'required',
            'stock' => 'required|numeric', 
            'price' => 'required|numeric', 
         ]);

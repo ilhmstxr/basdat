@@ -83,6 +83,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="img">Image</label>
+                                <input type="file" class="form-control" name="img" id="img" value="{{ old('img') }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="deskripsi">Description</label>
+                                <input type="text" class="form-control" name="deskripsi" id="deskripsi">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="price">Price</label>
                                 <input type="text" class="form-control" id="price" name="price">
                             </div>

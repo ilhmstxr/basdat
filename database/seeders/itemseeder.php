@@ -21,6 +21,7 @@ class itemseeder extends Seeder
             'price' => '16000',
             'stock' => '999921',
             'img' => '',
+            'deskripsi' => 'Nasi goreng lezat sederhana yang lezat',
             'category_id' => '1'
         ]);
 
@@ -29,6 +30,7 @@ class itemseeder extends Seeder
             'price' => '13000',
             'stock' => '99918',
             'img' => '',
+            'deskripsi' => 'Mie goreng komplit yang menggugah selera',
             'category_id' => '1'
         ]);
 
@@ -37,6 +39,7 @@ class itemseeder extends Seeder
             'price' => '6000',
             'stock' => '99925',
             'img' => '',
+            'deskripsi' => 'Minuman soda gembira klasik yang menyegarkan',
             'category_id' => '2'
         ]);
 
@@ -45,6 +48,7 @@ class itemseeder extends Seeder
             'price' => '8000',
             'stock' => '99930',
             'img' => '',
+            'deskripsi' => 'Makanan begitulah',
             'category_id' => '2'
         ]);
     }
