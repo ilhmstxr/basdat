@@ -61,8 +61,14 @@ class TransactionController extends Controller
 
     public function checkout(Request $request)
     {
-
-        $trans = transaction::create($request->all());
+        // dd($request->all());
+        $trans = transaction::create([
+            'user_id' =>$request->user_id,
+            'total' =>$request->total,
+            'pay_total' =>$request->pay_total,
+            ]);
+            
+            
         $ht = $trans->total;
         $carts = cart::all();
         $trx = transaction::latest()->first()->id;
@@ -79,23 +85,9 @@ class TransactionController extends Controller
         $kpn = kupon::find(1);
         $hk = $kpn->harga_ketentuan;
         $uk = auth()->user()->id;
-        // $jmluk = user_kupon::all();
-        // return $user_kupon;
-        // if($jmluk == ){
-        //     user_kupon::create([
-        //         'user_id' => $uk ,
-        //         'kupon_id' => 1 ,
-        //         'quantity_kupon' => 1,
-        //     ]);
-        // }
-
+        
         $user_kupon = user_kupon::where('id', $uk)->get();
         $jumlahkupon = $user_kupon[0]['quantity_kupon'];
-        // return $kpn;
-
-        // elseif($user_kupon['kupon_id' == null]){
-
-        // }
 
         if ($ht >= $hk) {
             $user_kupon = $request->quantity_kupon;
@@ -184,6 +176,3 @@ class TransactionController extends Controller
         return redirect()->back()->with('status', 'item berhasil dihapus dari keranjang');
     }
 }
-
-
-?>
