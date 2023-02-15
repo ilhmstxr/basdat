@@ -144,13 +144,6 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">kupon anda </td>
-<<<<<<< HEAD
-                                    <td colspan="1"><input type="number" class="form-control" readonly value="{{$kupon -> quantity_kupon}}"></td>
-                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="outline-primary" data-offstyle="outline-secondary">
-
-                                </tr>
-                                
-=======
                                     <td colspan="1"><input type="number" id="jk" class="form-control"
                                             value="{{ $kupon->quantity_kupon }}" readonly></td>
                                     {{-- @if ($kupon == null)
@@ -191,7 +184,6 @@
 
                                     }
                                 </script>
->>>>>>> 06218b4ef454df4a2cf7accf9115225f7ec75731
                         </table>
                         <button class="btn btn-primary text-light">save</button>
                         <input type="reset" class="btn btn-danger text-light" value="cancel">
