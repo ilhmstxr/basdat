@@ -27,14 +27,9 @@ class TransactionController extends Controller
         $cart = item::has('cart')->get()->sortByDesc('cart.created_at');
         $user = auth()->user()->id;
         $kupon = user_kupon::find($user);
-<<<<<<< HEAD
-        // return $kupon;
-        return view('transaction', compact('item', 'cart', 'kupon'));
-=======
         $k = kupon::find(1);
         // return $kupon;
         return view('transaction', compact('item', 'cart','kupon','k'));
->>>>>>> 06218b4ef454df4a2cf7accf9115225f7ec75731
     }
 
     /**
