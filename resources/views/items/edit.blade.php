@@ -17,7 +17,7 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('items.update',$item->id) }}">
+                        <form method="POST" enctype="multipart/form-data" action="{{ route('items.update',$item->id) }}">
                             @csrf
                             @method('put')
                             <div class="form-group">
