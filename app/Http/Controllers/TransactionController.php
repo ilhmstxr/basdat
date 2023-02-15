@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\Transaction;
 use App\Models\kupon;
 use App\Models\TransactionDetail;
+use App\Models\User;
 use App\Models\user_kupon;
 
 class TransactionController extends Controller
@@ -62,12 +63,19 @@ class TransactionController extends Controller
     {
         // dd($request->all());
         $trans = transaction::create([
-            'user_id' =>$request->user_id,
-            'total' =>$request->total,
-            'pay_total' =>$request->pay_total,
-            ]);
-            
-            
+            'user_id' => $request->user_id,
+            'total' => $request->total,
+            'pay_total' => $request->pay_total,
+            'userkupon_id' => $request->userkupon_id,
+        ]);
+
+        $u = auth()->user()->id;
+        $user_kupon = user_kupon::find($u);
+        // return $user_kupon; 
+        $user_kupon->update([
+            'quantity_kupon' => $request->disc
+        ]);
+
         $ht = $trans->total;
         $carts = cart::all();
         $trx = transaction::latest()->first()->id;
@@ -80,11 +88,11 @@ class TransactionController extends Controller
                 'subtotal' => $c->item->price * $c->qty
             ]);
         }
-
+        
         $kpn = kupon::find(1);
         $hk = $kpn->harga_ketentuan;
         $uk = auth()->user()->id;
-        
+
         $user_kupon = user_kupon::where('id', $uk)->get();
         $jumlahkupon = $user_kupon[0]['quantity_kupon'];
 
@@ -94,7 +102,7 @@ class TransactionController extends Controller
                 'quantity_kupon' =>  $jumlahkupon += 1
             ]);
 
-
+            
             cart::truncate();
             return redirect(route('transaction.show', transaction::latest()->first()->id))->with('status', 'selamat !, anda mendapatkan kupon');
         } else {
@@ -102,6 +110,10 @@ class TransactionController extends Controller
             cart::truncate();
             return redirect(route('transaction.show', transaction::latest()->first()->id));
         }
+
+        // $trax = Transaction::where('id', '6')->with('userkupon')->get();
+        // return $trax;
+       
     }
 
     public function kupon()
@@ -132,7 +144,7 @@ class TransactionController extends Controller
         $r = auth()->user()->id;
         // return $r;
         // $trx = Transaction::where('userkupon_id',$r)->with('user ')->get();
-        $trx = transaction::find($id);  
+        $trx = transaction::find($id);
         // return $trx;
         return view('detailtransaction', compact('trx'));
     }
