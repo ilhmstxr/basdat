@@ -65,7 +65,7 @@
                         @endif
 
 
-                        <form method="POST" action="{{ route('items.store') }}">
+                        <form method="POST" enctype="multipart/form-data" action="{{ route('items.store') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="">Item Category</label>

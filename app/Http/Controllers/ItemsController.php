@@ -68,7 +68,7 @@ class ItemsController extends Controller
         item::create([
             'category_id' => $request->category_id,
             'name' => $request->name,
-            'img' => $request->file('img'),
+            'img' => $nama_file,
             'deskripsi' => $request->deskripsi,
             'price' => $request->price,
             'stock' => $request->stock,
