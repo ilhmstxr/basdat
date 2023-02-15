@@ -12,6 +12,10 @@
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
                             </div>
+                        @elseif(session('kupon'))
+                        <div class="alert alert-success" >
+
+                        </div>
                         @endif
 
 

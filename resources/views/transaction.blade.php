@@ -123,15 +123,17 @@
                                 <input type="hidden" name="userkupon_id" value="{{ Auth::user()->id }}">
                                 <tr>
                                     <td colspan="2">kupon anda </td>
-                                    <td colspan="1"><input type="number" id="jk" class="form-control"
-                                            value="{{ $kupon->quantity_kupon }}" readonly></td>
-                                    <td><input type="checkbox" id="pakai"
+                                    <td colspan="1">
+                                        <input type="number" id="jk" class="form-control"
+                                            value="{{ $kupon->quantity_kupon }}" readonly>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="pakai"
                                             onchange="pakaikupon({{ $k->diskon }})">pakai
                                     </td>
                                     <td>
                                         <p id="text" style="display:none">Checkbox is CHECKED!</p>
                                     </td>
-
                                 </tr>
                                 <tr>
                                     <td colspan="2">Total</td>
@@ -148,13 +150,12 @@
                                             readonly>
                                     </td>
                                 </tr>
-                                        <input type="hidden" class="form-control" name="hasil"
-                                            id="hasil">
+                                <input type="hidden" class="form-control" name="hasil" id="hasil">
+                                <input type="hidden" class="form-control" name="disc" id="disc">
                                 <tr>
                                     <td colspan="2">Payment</td>
                                     <td colspan="3"><input type="number" class="form-control" name="pay_total"
-                                            min=""  
-                                            required>
+                                            min="" required>
                                     </td>
                                 </tr>
                                 <script>
@@ -169,7 +170,8 @@
                                             total.value = (total.value * (1 - diskon));
                                             console.log(total.value);
                                             document.getElementById("hasil").value = total.value;
-                                            
+                                            document.getElementById("jk").value = jk.value;
+
                                         } else {
                                             jk.value = parseInt(jk.value) + 1;
                                             total.value = (ha.value);
@@ -180,7 +182,7 @@
                                     }
                                 </script>
                         </table>
-                        <button class="btn btn-primary text-light" >save</button>
+                        <button class="btn btn-primary text-light">save</button>
                         <input type="reset" class="btn btn-danger text-light" value="cancel">
                         {{--                         
                         </table>

@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\Transaction;
 use App\Models\kupon;
 use App\Models\TransactionDetail;
+use App\Models\User;
 use App\Models\user_kupon;
 
 class TransactionController extends Controller
@@ -62,9 +63,14 @@ class TransactionController extends Controller
             'total' => $request->total,
             'pay_total' => $request->pay_total,
             'userkupon_id' => $request->userkupon_id,
-
         ]);
-        // return redirect()->back();
+
+        $u = auth()->user()->id;
+        $user_kupon = user_kupon::find($u);
+        // return $user_kupon; 
+        $user_kupon->update([
+            'quantity_kupon' => $request->disc
+        ]);
 
         $ht = $trans->total;
         $carts = cart::all();
@@ -94,15 +100,15 @@ class TransactionController extends Controller
 
 
             cart::truncate();
-            // return redirect(route('transaction.show', transaction::latest()->first()->id))->with('status', 'selamat !, anda mendapatkan kupon');
+            return redirect(route('transaction.show', transaction::latest()->first()->id))->with('status', 'selamat !, anda mendapatkan kupon');
         } else {
 
             cart::truncate();
-            // return redirect(route('transaction.show', transaction::latest()->first()->id));
+            return redirect(route('transaction.show', transaction::latest()->first()->id));
         }
 
-        $trax = Transaction::where('id', '6')->with('userkupon')->get();
-        return $trax;
+        // $trax = Transaction::where('id', '6')->with('userkupon')->get();
+        // return $trax;
        
     }
 
