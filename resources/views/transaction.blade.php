@@ -124,7 +124,7 @@
                                     <td colspan="2">kupon anda </td>
                                     <td colspan="1"><input type="number" id="jk" class="form-control"
                                             value="{{ $kupon->quantity_kupon }}" readonly></td>
-                                    <td><input type="checkbox" name="pakai" id="pakai"
+                                    <td><input type="checkbox" id="pakai"
                                             onchange="pakaikupon({{ $k->diskon }})">pakai
                                     </td>
                                     <td>
@@ -139,17 +139,20 @@
                                                 return $item->price * $item->cart->qty;
                                             }) }}"
                                             readonly name="total">
-                                    <td colspan="3"><input type="hidden" class="form-control" id="ha"
+                                    <td colspan="3">
+                                        <input type="hidden" class="form-control" id="ha"
                                             value="{{ $cart->sum(function ($item) {
                                                 return $item->price * $item->cart->qty;
                                             }) }}"
-                                            readonly name="total">
+                                            readonly>
                                     </td>
                                 </tr>
+                                        <input type="hidden" class="form-control" name="hasil"
+                                            id="hasil">
                                 <tr>
                                     <td colspan="2">Payment</td>
                                     <td colspan="3"><input type="number" class="form-control" name="pay_total"
-                                            min="{{ $cart->sum(function ($item) {return $item->price * $item->cart->qty;}) }}"
+                                            min=""  
                                             required>
                                     </td>
                                 </tr>
@@ -163,15 +166,20 @@
                                         if (checkbox.checked) {
                                             jk.value = parseInt(jk.value) - 1;
                                             total.value = (total.value * (1 - diskon));
-
+                                            console.log(total.value);
+                                            document.getElementById("hasil").value = total.value;
+                                            
                                         } else {
                                             jk.value = parseInt(jk.value) + 1;
                                             total.value = (ha.value);
                                         }
+
+                                        // document.getElementById("hasil").setAttribute("min", total.value);
+
                                     }
                                 </script>
                         </table>
-                        <button class="btn btn-primary text-light">save</button>
+                        <button class="btn btn-primary text-light" >save</button>
                         <input type="reset" class="btn btn-danger text-light" value="cancel">
                         {{--                         
                         </table>
