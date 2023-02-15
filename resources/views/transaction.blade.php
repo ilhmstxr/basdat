@@ -123,24 +123,25 @@
                                 <input type="hidden" name="userkupon_id" value="{{ Auth::user()->id }}">
                                 <tr>
                                     <td colspan="2">kupon anda </td>
-                                    <td colspan="1">
-                                        <input type="number" id="jk" class="form-control"
-                                            value="{{ $kupon->quantity_kupon }}" readonly>
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" id="pakai"
-                                    <td colspan="1"><input type="number" id="jk" class="form-control"
-                                            value="{{ $kupon->quantity_kupon }}" readonly></td>
-                                        @if ($uk == 0)
-                                            <td>
-                                               {{-- <h1>kosong cuyh</h1> --}}
-                                                <input type="checkbox" data-toggle="switchbutton" checked data-size="lg" id="pakai" value="" disabled onchange="pakaikupon({{$k->diskon}})">pakai
-                                            </td>
-                                        @else
-                                            <td>
-                                                <input type="checkbox" id="pakai" onchange="pakaikupon({{$k->diskon}})">pakai
-                                            </td>
-                                        @endif
+
+                                    @if ($uk == 0)
+                                        <td>
+                                            <input type="number" class="form-control" value="0" readonly>
+                                        </td>
+                                        <td>
+                                            {{-- <input type="number" class="form-control" value="0" readonly> --}}
+                                            {{-- <input type="checkbox" data-toggle="switchbutton" checked data-size="lg" id="pakai" value="" disabled onchange="pakaikupon({{$k->diskon}})">pakai --}}
+                                        </td>
+                                    @else
+                                        <td>
+                                            <input type="number" id="jk" class="form-control"
+                                                value="{{ $kupon->quantity_kupon }}" readonly>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" id="pakai"
+                                                onchange="pakaikupon({{ $k->diskon }})">pakai
+                                        </td>
+                                    @endif
                                     {{-- <td><input type="checkbox" id="pakai"
                                             onchange="pakaikupon({{ $k->diskon }})">pakai
                                     </td> --}}
