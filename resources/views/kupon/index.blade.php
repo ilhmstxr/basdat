@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header bg-secondary text-light">{{ __('Dashboard') }}</div>
 
                     <div class="card-body">
                         @if (count($errors) > 0)
@@ -57,7 +57,7 @@
 
             <div class="col-md-4 ">
                 <div class="card">
-                    <div class="card-header">{{ __('Add Kupon') }}</div>
+                    <div class="card-header bg-success text-light">{{ __('Add Kupon') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -85,6 +85,8 @@
                                 <label for="">Diskon</label>
                                 <input type="number" class="form-control" placeholder="Masukkan diskon" name="diskon">
                             </div>
+
+                            <hr>
 
 
                             <div class="form-group mt-2">

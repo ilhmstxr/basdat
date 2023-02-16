@@ -5,8 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Category') }}</div>
-
+                    <div class="card-header bg-secondary text-light ">{{ __('Category') }}</div>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
@@ -17,8 +16,8 @@
                         <table class="table table-responsive">
                             <thead>
                                 <td>#</td>
-                                <td>name</td>
-                                <td>action</td>
+                                <td>Name</td>
+                                <td>Action</td>
                             </thead>
                             @foreach ($categories as $c)
                                 <tr>
@@ -44,7 +43,7 @@
 
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">{{ __('Add Category') }}</div>
+                    <div class="card-header bg-success text-light">{{ __('Add Category') }}</div>
 
                     <div class="card-body">
                         
@@ -58,9 +57,10 @@
                         <form method="POST" action="{{ route('category.store') }}">
                             @csrf
                             <div class="form-group">
-                                <label for="nama">Name</label>
+                                <label for="nama">Name :</label>
                                 <input type="text" class="form-control mb-2" id="nama" name="nama">
                             </div>
+                            <hr>
                             <div class="form-group">
                                 <button class="btn btn-sm btn-success">Tambah</button>
                                 {{-- <input type="reset" value="Batal" class="btn btn-sm btn-danger"> --}}
