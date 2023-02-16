@@ -24,28 +24,25 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::unprepared('CREATE TRIGGER `reduce_stc` AFTER INSERT ON `carts` FOR EACH ROW
-                BEGIN
-                UPDATE items SET items.stock = 
-                items.stock - NEW.qty
-                WHERE items.id = NEW.item_id;
-                END
+        DB::unprepared('CREATE TRIGGER `reduce_stc`
+        AFTER INSERT ON `carts` FOR EACH ROW
+        UPDATE items SET items.stock =
+        items.stock - NEW.qty
+        WHERE items.id = NEW.item_id;
         ');
 
-        DB::unprepared('CREATE TRIGGER `restore_stc` AFTER DELETE ON `carts` FOR EACH ROW
-            BEGIN
-            UPDATE items SET items.stock = 
-            items.stock + OLD.qty
-            WHERE items.id = OLD.item_id;
-            END
+        DB::unprepared('CREATE TRIGGER `restore_stc` 
+        AFTER DELETE ON `carts` FOR EACH ROW
+        UPDATE items SET items.stock = 
+        items.stock + OLD.qty
+        WHERE items.id = OLD.item_id;    
         ');
 
-        DB::unprepared('CREATE TRIGGER `update_stc` AFTER UPDATE ON `carts` FOR EACH ROW
-            BEGIN
-            UPDATE items SET items.stock = 
-            (items.stock + OLD.qty) - NEW.qty
-            WHERE items.id = OLD.item_id;
-            END
+        DB::unprepared('CREATE TRIGGER `update_stc` 
+        AFTER UPDATE ON `carts` FOR EACH ROW
+        UPDATE items SET items.stock = 
+        (items.stock + OLD.qty) - NEW.qty
+        WHERE items.id = OLD.item_id;    
         ');
     }
 

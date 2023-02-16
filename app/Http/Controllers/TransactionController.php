@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\Transaction;
 use App\Models\kupon;
 use App\Models\TransactionDetail;
+use App\Models\User;
 use App\Models\user_kupon;
 
 class TransactionController extends Controller
@@ -28,8 +29,12 @@ class TransactionController extends Controller
         $user = auth()->user()->id;
         $kupon = user_kupon::find($user);
         $k = kupon::find(1);
+        $uk = $kupon->quantity_kupon;
+
+        // return $uk;
         // return $kupon;
-        return view('transaction', compact('item', 'cart','kupon','k'));
+        // return $kupon;
+        return view('transaction', compact('item', 'cart', 'kupon', 'k', 'uk'));
     }
 
     /**
@@ -56,8 +61,22 @@ class TransactionController extends Controller
 
     public function checkout(Request $request)
     {
+        // dd($request->all());
+        $trans = transaction::create([
+            // 'user_id' => $request->user_id,
+            'total' => $request->total,
+            'pay_total' => $request->pay_total,
+            'userkupon_id' => $request->userkupon_id,
+        ]);
 
-        $trans = transaction::create($request->all());
+        
+        $u = auth()->user()->id;
+        $user_kupon = user_kupon::find($u);
+        // return $user_kupon; 
+        $user_kupon->update([
+            'quantity_kupon' => $request->disc
+        ]);
+        
         $ht = $trans->total;
         $carts = cart::all();
         $trx = transaction::latest()->first()->id;
@@ -70,42 +89,41 @@ class TransactionController extends Controller
                 'subtotal' => $c->item->price * $c->qty
             ]);
         }
-        
+
         $kpn = kupon::find(1);
         $hk = $kpn->harga_ketentuan;
         $uk = auth()->user()->id;
-        // $jmluk = user_kupon::all();
-        // return $user_kupon;
-        // if($jmluk == ){
-        //     user_kupon::create([
-        //         'user_id' => $uk ,
-        //         'kupon_id' => 1 ,
-        //         'quantity_kupon' => 1,
-        //     ]);
-        // }
-        
+
         $user_kupon = user_kupon::where('id', $uk)->get();
         $jumlahkupon = $user_kupon[0]['quantity_kupon'];
-        // return $kpn;
 
-        // elseif($user_kupon['kupon_id' == null]){
+        // $userk = user_kupon::find($uk);
+        $userk = user_kupon::where('user_id', $uk)->get();
+        foreach ($userk as $k) {
+            $thiss = $k->quantity_kupon;
+        }
 
-        // }
+        // if ($thiss == null) {
+        //     return 
+        // } else 
+
 
         if ($ht >= $hk) {
             $user_kupon = $request->quantity_kupon;
             user_kupon::where('id', $uk)->update([
                 'quantity_kupon' =>  $jumlahkupon += 1
             ]);
-
-            
             cart::truncate();
             return redirect(route('transaction.show', transaction::latest()->first()->id))->with('status', 'selamat !, anda mendapatkan kupon');
-        }else{
-            
+        } else {
+
             cart::truncate();
             return redirect(route('transaction.show', transaction::latest()->first()->id));
         }
+
+        // $trax = Transaction::where('id', '6')->with('userkupon')->get();
+        // return $trax;
+
     }
 
     public function kupon()
@@ -134,11 +152,16 @@ class TransactionController extends Controller
         // return $id;
         // return redirect()->back();
         $r = auth()->user()->id;
+        $served = user_kupon::where('id',$r)->with('user')->get();
+        
+        foreach($served as $s){
+            $a =$s->user->name;
+        }
         // return $r;
         // $trx = Transaction::where('userkupon_id',$r)->with('user ')->get();
-        $trx = transaction::find($id);  
+        $trx = transaction::find($id);
         // return $trx;
-        return view('detailtransaction', compact('trx'));
+        return view('detailtransaction', compact('trx','a'));
     }
 
     /**
@@ -179,6 +202,3 @@ class TransactionController extends Controller
         return redirect()->back()->with('status', 'item berhasil dihapus dari keranjang');
     }
 }
-
-
-?>

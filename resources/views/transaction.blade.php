@@ -21,10 +21,10 @@
                         <div class="row">
                             @foreach ($item as $i)
                                 <div class="card mx-3" style="width: 13rem;">
-                                    <img src="{{ asset('img/e.png') }}" class="card-img-top py-3" alt="...">
+                                    <img src="{{ asset('/template/img/'.$i->img) }}"   class="card-img-top py-3" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $i->name }}</h5>
-                                        <p class="card-text">Mie goreng sederhana yang lezat dan nikmat bagi semua kalangan
+                                        <p class="card-text">{{$i->deskripsi}}
                                         </p>
                                     </div>
                                     <ul class="list-group list-group-flush">
@@ -119,7 +119,32 @@
 
                             <form action="{{ route('transaction.checkout') }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                {{-- <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> --}}
+                                <input type="hidden" name="userkupon_id" value="{{ Auth::user()->id }}">
+                                <tr>
+                                    <td colspan="2">kupon anda </td>
+
+                                    @if ($uk == 0)
+                                        <td>
+                                            <input type="number" class="form-control" value="0" readonly>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" class="form-check-input" id="pakai" disabled onchange="pakaikupon({{$k->diskon}})">
+                                        </td>
+                                    @else
+                                        <td>
+                                            <input type="number" id="jk" class="form-control"
+                                                value="{{ $kupon->quantity_kupon }}" readonly>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" class="form-check-input" id="pakai" onchange="pakaikupon({{$k->diskon}})"> Pakai
+                                        </td>
+                                    @endif
+
+                                    <td>
+                                        <p id="text" style="display:none">Checkbox is CHECKED!</p>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td colspan="2">Total</td>
                                     <td colspan="3"><input type="number" class="form-control" id="total"
@@ -127,74 +152,60 @@
                                                 return $item->price * $item->cart->qty;
                                             }) }}"
                                             readonly name="total">
-                                    <td colspan="3"><input type="hidden" class="form-control" id="ha"
-                                            value="" readonly name="ha">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">Payment</td>
-                                    <input type="hidden" id="pay">
-                                    <td colspan="3"><input type="number" class="form-control" name="pay_total"
-                                            min="{{ $cart->sum(function ($item) {
+                                    <td colspan="3">
+                                        <input type="hidden" class="form-control" id="ha"
+                                            value="{{ $cart->sum(function ($item) {
                                                 return $item->price * $item->cart->qty;
                                             }) }}"
-                                            id="disc" required>
-
+                                            readonly>
                                     </td>
                                 </tr>
+                                <input type="hidden" class="form-control" name="hasil" id="hasil">
+                                <input type="hidden" class="form-control" name="disc" id="disc">
                                 <tr>
-                                    <td colspan="2">kupon anda </td>
-                                    <td colspan="1"><input type="number" id="jk" class="form-control"
-                                            value="{{ $kupon->quantity_kupon }}" readonly></td>
-                                    {{-- @if ($kupon == null)
-                                        <td colspan="1" ><input type="number" id="jk" class="form-control" value="0"></td>
-                                    @else --}}
-                                    {{-- @endif --}}
-
-                                    {{-- <td>
-                                        <input type="checkbox" id="pakai"
-                                            onchange="pakaikupon({{ $k->diskon }})">pakai
+                                    <td colspan="2">Payment</td>
+                                    <td colspan="3"><input type="number" class="form-control" name="pay_total"
+                                            min="" required>
                                     </td>
-                                    <td>
-                                        <p id="text" style="display:none">Checkbox is CHECKED!</p>
-                                    </td> --}}
-
                                 </tr>
                                 <script>
                                     function pakaikupon(diskon) {
-
                                         let checkbox = document.getElementById("pakai");
                                         // let diskon = document.getElementById("diskon");
                                         let jk = document.getElementById("jk");
                                         let total = document.getElementById("total");
                                         let ha = document.getElementById("ha");
-                                        let pay = document.getElementById("pay");
-
-                                        const val = document.query
                                         if (checkbox.checked) {
                                             jk.value = parseInt(jk.value) - 1;
                                             total.value = (total.value * (1 - diskon));
-                                            pay.value = total.value;
                                             console.log(total.value);
+                                            document.getElementById("hasil").value = total.value;
+                                            document.getElementById("jk").value = jk.value;
 
                                         } else {
                                             jk.value = parseInt(jk.value) + 1;
                                             total.value = (ha.value);
                                         }
 
+                                        // document.getElementById("hasil").setAttribute("min", total.value);
+
                                     }
                                 </script>
                         </table>
                         <button class="btn btn-primary text-light">save</button>
                         <input type="reset" class="btn btn-danger text-light" value="cancel">
-                    </form>
-                        
-                            <form action="{{ route('transaction.kupon') }}">
-                                @csrf
-                                <button class="btn btn-primary text-light">button nggo kupon</button>
-                            </form>
+                        {{--                         
+                        </table>
+                        <button class="btn btn-primary text-light">save</button>
+                        <input type="reset" class="btn btn-danger text-light" value="cancel">
+                        </form>
 
-                        </div>
+                        <form action="{{ route('transaction.kupon') }}">
+                            @csrf
+                            <button class="btn btn-primary text-light">button nggo kupon</button>
+                        </form> --}}
+
+                    </div>
                 </div>
             </div>
         </div>

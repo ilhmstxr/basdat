@@ -20,13 +20,13 @@ class user_kupon extends Model
         return $this->hasMany(transaction::class);
     }
 
-//     public function user()
-//     {
-//         return $this->belongsTo(kupon::class);
-//     }
+    // public function user()
+    // {
+    //     return $this->belongsTo(kupon::class);
+    // }
 
-//     public function user()
-//     {
-//         return $this->belongsTo(user::class);
-//     }
+    public function user()
+    {
+        return $this->belongsTo(user::class);
+    }
 }

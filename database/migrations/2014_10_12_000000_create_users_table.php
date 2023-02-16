@@ -18,14 +18,19 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            // $table->timestamp('email_verified_at')->nullable();
+            $table->string('nik');
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             // $table->rememberToken();
             $table->timestamps();
         });
 
-        db::unprepared('CREATE TRIGGER `default_cupon` AFTER INSERT ON `users`
-        FOR EACH ROW INSERT INTO `user_kupons` (`id`, `user_id`, `kupon_id`, `quantity_kupon`, `created_at`, `updated_at`) VALUES (NULL, NEW.id, 1, 0, NULL, NULL)
+        db::unprepared('CREATE TRIGGER `default_cupon`
+         AFTER INSERT ON `users`
+        FOR EACH ROW INSERT INTO `user_kupons` 
+        (`id`, `user_id`, `kupon_id`, `quantity_kupon`,
+         `created_at`, `updated_at`) 
+         VALUES (NULL, NEW.id, 1, NULL, NULL, NULL)
         ');
 
     }

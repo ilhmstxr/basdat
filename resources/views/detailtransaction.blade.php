@@ -12,6 +12,10 @@
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
                             </div>
+                        @elseif(session('kupon'))
+                            <div class="alert alert-success">
+
+                            </div>
                         @endif
 
 
@@ -22,7 +26,7 @@
                             </tr>
                             <tr>
                                 <td class="col-md-6">Served By</td>
-                                <td>: {{ $trx->user->name }}</td>
+                                <td>: {{ $a }}</td>
                             </tr>
                         </table>
 

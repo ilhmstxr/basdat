@@ -65,7 +65,7 @@
                         @endif
 
 
-                        <form method="POST" action="{{ route('items.store') }}">
+                        <form method="POST" enctype="multipart/form-data" action="{{ route('items.store') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="">Item Category</label>
@@ -80,6 +80,16 @@
                             <div class="form-group">
                                 <label for="name">Item Name</label>
                                 <input type="text" class="form-control" id="name" name="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="img">Image</label>
+                                <input type="file" class="form-control" name="img" id="img" value="{{ old('img') }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="deskripsi">Description</label>
+                                <input type="text" class="form-control" name="deskripsi" id="deskripsi">
                             </div>
 
                             <div class="form-group">
