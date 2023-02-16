@@ -134,9 +134,18 @@ class TransactionController extends Controller
 
     public function history()
     {
-        $t = Transaction::all();
+        // $t = Transaction::all();
+        $r = auth()->user()->id;
+        // $t = Transaction::where('userkupon_id',$r)->with('userkupon')->join('users','user_kupon.user_id','=','users.id')->get();
+        $t = Transaction::where('userkupon_id',$r)->with('userkupon')->get();
+        // return $t;  
+        // $served = Transaction::where('transaction.id', '1')->join('user_kupons','user_kupons.id', '=', 'transaction.userkupon_id')->get();
+        // foreach($served as $s){
+        //     $a =$s->user->name;
+        // }
+        $a = 'a';
         // return $t;
-        return view('historytransaction', compact('t'));
+        return view('historytransaction', compact('t','a'));
     }
 
 
@@ -153,7 +162,6 @@ class TransactionController extends Controller
         // return redirect()->back();
         $r = auth()->user()->id;
         $served = user_kupon::where('id',$r)->with('user')->get();
-        
         foreach($served as $s){
             $a =$s->user->name;
         }

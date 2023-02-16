@@ -52,6 +52,6 @@ class User extends Authenticatable
 
     public function userkupon()
     {
-        return $this->hasMany(user_kupon::class);
+        return $this->hasManyThrough(user_kupon::class, transaction::class);
     }
 }
