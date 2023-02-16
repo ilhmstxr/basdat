@@ -18,6 +18,7 @@ class userseeder extends Seeder
     {
         User::create([
             'name' => 'admin',
+            'role' => 'admin',
             'email' => 'admin@gmail.com',
             'nik' => '123456789',
             'password' => bcrypt('12345'),
@@ -25,6 +26,7 @@ class userseeder extends Seeder
 
         User::create([
             'name' => 'ilham',
+            'role' => 'user',
             'email' => 'ilham@gmail.com',
             'nik' => '123456789',
             'password' => bcrypt('12345'),
@@ -32,6 +34,7 @@ class userseeder extends Seeder
 
         User::create([
             'name' => 'tsanny',
+            'role' => 'user',
             'email' => 'tsanny@gmail.com',
             'nik' => '1234567890',
             'password' => bcrypt('12345'),

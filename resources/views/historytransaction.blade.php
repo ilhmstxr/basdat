@@ -30,7 +30,7 @@
                                     <td>{{ $trx->created_at }}</td>
                                     <td>{{ $trx->total }}</td>
                                     <td>{{ $trx->pay_total }}</td>
-                                    <td>{{ $trx->user->name }}</td>
+                                    <td>{{ $trx->userkupon->user->name}}</td>
                                     <td>
 
                                         <a href="{{ route('transaction.show',$trx->id) }}"
