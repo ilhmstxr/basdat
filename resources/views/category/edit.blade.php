@@ -6,7 +6,7 @@
 
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header bg-warning">{{ __('Edit Category') }}</div>
+                    <div class="card-header bg-warning text-center">{{ __('Edit Category') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))

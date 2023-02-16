@@ -17,7 +17,7 @@
                    <div class="text-center">
                     {{ __('You are logged in !') }}
                     <br>
-                    {{__('Selamat Berbelanja !')}}
+                    {{__('Selamat Datang !')}}
                    </div>
                 </div>
             </div>

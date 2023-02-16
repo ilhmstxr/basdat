@@ -6,7 +6,7 @@
 
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header bg-secondary text-light">{{ __('Barang') }}</div>
+                    <div class="card-header bg-secondary text-light text-center">{{ __('Barang') }}</div>
 
                     <div class="card-body">
                         @if (count($errors) > 0)
@@ -19,7 +19,7 @@
 
 
                         <div class="row mx-2">
-                            <div class="card  bg-success bg-opacity-25">
+                            <div class="card  bg-success bg-opacity-25 text-center">
                                 {{-- <img class="card-img-top" src="holder.js/100x180/" alt="Title"> --}}
                                 <div class="card-body">
                                     {{-- <h4 class="card-title">Title</h4> --}}
@@ -64,7 +64,7 @@
 
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header bg-warning ">{{ __('Keranjang') }}</div>
+                    <div class="card-header bg-success text-light text-center">{{ __('Keranjang') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))

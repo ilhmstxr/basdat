@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header bg-secondary text-light">{{ __('Item') }}</div>
+                    <div class="card-header bg-secondary text-light text-center">{{ __('Item') }}</div>
 
                     <div class="card-body">
 
@@ -53,7 +53,7 @@
 
             <div class="col-md-4 ">
                 <div class="card">
-                    <div class="card-header bg-success text-light">{{ __('Add Item') }}</div>
+                    <div class="card-header bg-success text-light text-center">{{ __('Add Item') }}</div>
 
                     <div class="card-body">
                         @if (count($errors) > 0)

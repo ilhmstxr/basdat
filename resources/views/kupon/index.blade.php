@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header bg-secondary text-light">{{ __('Dashboard') }}</div>
+                    <div class="card-header bg-secondary text-light text-center">{{ __('Dashboard') }}</div>
 
                     <div class="card-body">
                         @if (count($errors) > 0)
@@ -57,7 +57,7 @@
 
             <div class="col-md-4 ">
                 <div class="card">
-                    <div class="card-header bg-success text-light">{{ __('Add Kupon') }}</div>
+                    <div class="card-header bg-success text-light text-center">{{ __('Add Kupon') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
