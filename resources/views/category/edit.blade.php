@@ -6,7 +6,7 @@
 
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">{{ __('Edit Category') }}</div>
+                    <div class="card-header bg-warning">{{ __('Edit Category') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -21,8 +21,9 @@
                             @method('put')
                             <div class="form-group">
                                 <label for="">Name</label>
-                                <input type="text" name="nama" class="form-control mb-2" placeholder="{{ $c->nama }}">
+                                <input type="text" name="nama" class="form-control mb-2" value="{{ $c->nama }}">
                             </div>
+                            <hr>
                             <div class="form-group">
                                 <button class="btn btn-sm btn-success">Simpan</button>
                                 <a href="{{ route('category.index') }}" class="btn btn-sm btn-danger">batal</a>

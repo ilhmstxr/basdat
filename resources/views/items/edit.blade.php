@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container ">
         <div class="row justify-content-center">
 
             <div class="col-md-4 ">
-                <div class="card">
-                    <div class="card-header">{{ __('Edit Item') }}</div>
+                <div class="card ">
+                    <div class="card-header bg-warning">{{ __('Edit Item') }}</div>
 
                     <div class="card-body">
                         @if (count($errors) > 0)
@@ -54,6 +54,8 @@
                                 <label for="">Stock</label>
                                 <input type="number" class="form-control" name="stock" value="{{ $item->stock }}">
                             </div>
+
+                            <hr>
 
                             <div class="form-group mt-2">
                                 <button class="btn btn-sm btn-success">Simpan</button>

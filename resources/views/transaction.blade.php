@@ -6,7 +6,7 @@
 
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Barang') }}</div>
+                    <div class="card-header bg-secondary text-light">{{ __('Barang') }}</div>
 
                     <div class="card-body">
                         @if (count($errors) > 0)
@@ -18,16 +18,17 @@
                         @endif
 
 
-                        <div class="row">
-                            <div class="card">
+                        <div class="row mx-2">
+                            <div class="card  bg-success bg-opacity-25">
                                 {{-- <img class="card-img-top" src="holder.js/100x180/" alt="Title"> --}}
                                 <div class="card-body">
                                     {{-- <h4 class="card-title">Title</h4> --}}
                                     <p class="card-text">kupon {{ $k->diskon * 100 ."%" }} untuk minimal pembelian {{ "Rp.".number_format($k->harga_ketentuan )}}</p>
                                 </div>
                             </div>
+                            
                             @foreach ($item as $i)
-                                <div class="card mx-3" style="width: 13rem;">
+                                <div class="card mx-2 mt-3" style="width: 13rem;">
                                     <img src="{{ asset('/template/img/'.$i->img) }}"   class="card-img-top py-3" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $i->name }}</h5>
@@ -63,7 +64,7 @@
 
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">{{ __('Keranjang') }}</div>
+                    <div class="card-header bg-warning ">{{ __('Keranjang') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -199,6 +200,7 @@
                                     }
                                 </script>
                         </table>
+                        <hr>
                         <button class="btn btn-primary text-light">save</button>
                         <input type="reset" class="btn btn-danger text-light" value="cancel">
                         {{--                         

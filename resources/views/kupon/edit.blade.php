@@ -6,7 +6,7 @@
 
             <div class="col-md-4 ">
                 <div class="card">
-                    <div class="card-header">{{ __('Edit Kupon') }}</div>
+                    <div class="card-header bg-warning">{{ __('Edit Kupon') }}</div>
 
                     <div class="card-body">
                         @if (count($errors) > 0)
@@ -36,6 +36,8 @@
                                 <label for="">Diskon</label>
                                 <input type="number" class="form-control" name="diskon" value="{{ $kupon->diskon }}">
                             </div>
+
+                            <hr>
 
 
                             <div class="form-group mt-2">

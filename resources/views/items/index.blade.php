@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Item') }}</div>
+                    <div class="card-header bg-secondary text-light">{{ __('Item') }}</div>
 
                     <div class="card-body">
 
@@ -53,7 +53,7 @@
 
             <div class="col-md-4 ">
                 <div class="card">
-                    <div class="card-header">{{ __('Add Item') }}</div>
+                    <div class="card-header bg-success text-light">{{ __('Add Item') }}</div>
 
                     <div class="card-body">
                         @if (count($errors) > 0)
@@ -101,7 +101,8 @@
                                 <label for="stock">Stock</label>
                                 <input type="number" class="form-control" id="stock" name="stock">
                             </div>
-
+                            
+                            <hr>
 
                             <div class="form-group mt-2">
                                 <button class="btn btn-sm btn-success">Tambah</button>
