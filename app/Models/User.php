@@ -45,10 +45,10 @@ class User extends Authenticatable
     ];
 
 
-    public function transaction()
-    {
-        return $this->hasMany(transaction::class);
-    }
+    // public function transaction()
+    // {
+    //     return $this->hasMany(transaction::class);
+    // }
 
     public function userkupon()
     {

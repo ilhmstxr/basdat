@@ -16,7 +16,10 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedBigInteger('user_id')->nullable();
+            // $table->unsignedBigInteger('user_id')->nullable();
+            // $table->foreign('user_id')->references('id')->on('users')
+            //     ->onDelete('cascade')
+            //     ->onUpdate('cascade');
             $table->unsignedBigInteger('userkupon_id')->nullable();
             $table->foreign('userkupon_id')->references('id')->on('user_kupons')
                 ->onDelete('cascade')
@@ -27,7 +30,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        
+
         // DB::unprepared('CREATE TRIGGER `get_cupon` AFTER INSERT ON `transactions`
         // FOR EACH ROW UPDATE user_kupons 
         // SET user_kupons.quantity_kupon = user_kupons.quantity_kupon +1

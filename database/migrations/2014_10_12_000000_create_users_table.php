@@ -30,7 +30,7 @@ return new class extends Migration
         FOR EACH ROW INSERT INTO `user_kupons` 
         (`id`, `user_id`, `kupon_id`, `quantity_kupon`,
          `created_at`, `updated_at`) 
-         VALUES (NULL, NEW.id, 1, NULL, NULL, NULL)
+         VALUES (NULL, NEW.id, 1, 1, NULL, NULL)
         ');
 
     }

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 
 class ItemsController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -24,7 +24,7 @@ class ItemsController extends Controller
         $item = item::all();
         $category = category::all();
         // return $item;
-        return view('items.index',compact('category','item'));
+        return view('items.index', compact('category', 'item'));
     }
 
     /**
@@ -45,35 +45,36 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'category_id' => 'required', 
-            'name' => 'required', 
-            'img' => 'mimes:jpg,png', 
-            'deskripsi' => 'required', 
-            'stock' => 'required|numeric', 
-            'price' => 'required|numeric', 
-         ]);
+        $this->validate($request, [
+            'category_id' => 'required',
+            'name' => 'required',
+            'img' => 'mimes:jpg,png',
+            'deskripsi' => 'required',
+            'stock' => 'required|numeric',
+            'price' => 'required|numeric',
+        ]);
 
-         
 
-         //ambil informasi file yang di upload 
+
+        //ambil informasi file yang di upload 
         $file = $request->file('img');
         //rename 
-        $nama_file = time()."_".$file->getClientOriginalName();
+        $nama_file = time() . "_" . $file->getClientOriginalName();
         //proses upload 
-        $tujuan_upload= './template/img';
-        $file->move($tujuan_upload,$nama_file); 
+        $tujuan_upload = './template/img';
+        $file->move($tujuan_upload, $nama_file);
         // return $item;
 
-        item::create([
+        $i =   item::create([
             'category_id' => $request->category_id,
             'name' => $request->name,
             'img' => $nama_file,
             'deskripsi' => $request->deskripsi,
             'price' => $request->price,
             'stock' => $request->stock,
-         ]);
+        ]);
 
+        // return $i;
         return redirect()->back()->with('status', 'item berhasil disimpan');
     }
 
@@ -99,7 +100,7 @@ class ItemsController extends Controller
         $item = item::find($id);
         $category = category::all();
         // return $item;
-        return view('items.edit',compact('item','category'));
+        return view('items.edit', compact('item', 'category'));
     }
 
     /**
@@ -111,14 +112,14 @@ class ItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $this->validate($request,[
-           'category_id' => 'required', 
-           'name' => 'required', 
-           'img' => 'required',
-           'deskripsi' => 'required',
-           'stock' => 'required|numeric', 
-           'price' => 'required|numeric', 
+
+        $this->validate($request, [
+            'category_id' => 'required',
+            'name' => 'required',
+            'img' => 'required',
+            'deskripsi' => 'required',
+            'stock' => 'required|numeric',
+            'price' => 'required|numeric',
         ]);
 
         $i = item::findorfail($id);
