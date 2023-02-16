@@ -106,10 +106,10 @@
                                             document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
-                                        <hr class="sidebar-divider my-2">
+                                        {{-- <hr class="sidebar-divider my-2"> --}}
 
                                         {{-- @foreach ($user as $u) --}}
-                                        <a href="{{ route('profile.index') }}" class="dropdown-item">kupon</a>
+                                        {{-- <a href="{{ route('profile.index') }}" class="dropdown-item">kupon</a> --}}
                                         {{-- @endforeach --}}
 
 

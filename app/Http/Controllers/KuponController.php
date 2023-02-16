@@ -96,7 +96,7 @@ class KuponController extends Controller
 
         $i = kupon::findorfail($id);
         $i->update($request->all());
-        return redirect('kupon.index')->with('status', 'Kupon berhasil diupdate');
+        return redirect('kupon')->with('status', 'Kupon berhasil diupdate');
     }
 
     /**
