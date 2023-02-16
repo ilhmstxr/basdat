@@ -23,7 +23,7 @@
                                 {{-- <img class="card-img-top" src="holder.js/100x180/" alt="Title"> --}}
                                 <div class="card-body">
                                     {{-- <h4 class="card-title">Title</h4> --}}
-                                    <p class="card-text">kupon {{ number_format($k->diskon, NumberFormatter::PERCENT)}} untuk minimal pembelian {{ number_format($k->harga_ketentuan )}}</p>
+                                    <p class="card-text">kupon {{ $k->diskon * 100 ."%" }} untuk minimal pembelian {{ "Rp.".number_format($k->harga_ketentuan )}}</p>
                                 </div>
                             </div>
                             @foreach ($item as $i)
