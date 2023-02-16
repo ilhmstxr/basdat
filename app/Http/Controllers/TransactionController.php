@@ -31,7 +31,7 @@ class TransactionController extends Controller
         $k = kupon::find(1);
         $uk = $kupon->quantity_kupon;
 
-        // return $uk;
+        // return $k;
         // return $kupon;
         // return $kupon;
         return view('transaction', compact('item', 'cart', 'kupon', 'k', 'uk'));

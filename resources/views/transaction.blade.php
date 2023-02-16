@@ -19,6 +19,13 @@
 
 
                         <div class="row">
+                            <div class="card">
+                                {{-- <img class="card-img-top" src="holder.js/100x180/" alt="Title"> --}}
+                                <div class="card-body">
+                                    {{-- <h4 class="card-title">Title</h4> --}}
+                                    <p class="card-text">kupon {{ number_format($k->diskon, NumberFormatter::PERCENT)}} untuk minimal pembelian {{ number_format($k->harga_ketentuan )}}</p>
+                                </div>
+                            </div>
                             @foreach ($item as $i)
                                 <div class="card mx-3" style="width: 13rem;">
                                     <img src="{{ asset('/template/img/'.$i->img) }}"   class="card-img-top py-3" alt="...">
