@@ -134,10 +134,15 @@ class TransactionController extends Controller
 
     public function history()
     {
-        // $t = Transaction::all();
         $r = auth()->user()->id;
-        // $t = Transaction::where('userkupon_id',$r)->with('userkupon')->join('users','user_kupon.user_id','=','users.id')->get();
-        $t = Transaction::where('userkupon_id',$r)->with('userkupon')->get();
+        
+        if (auth()->user()->role == 'admin') {
+            // return true;
+            $t = Transaction::all();
+        }else{
+            // return 'false';
+            $t = Transaction::where('userkupon_id',$r)->with('userkupon')->get();
+        }
         // return $t;  
         // $served = Transaction::where('transaction.id', '1')->join('user_kupons','user_kupons.id', '=', 'transaction.userkupon_id')->get();
         // foreach($served as $s){
